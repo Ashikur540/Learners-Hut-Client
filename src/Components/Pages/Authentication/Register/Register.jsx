@@ -1,8 +1,171 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 import registerPic from "../../../../Assets/Images/signuppic.jpg";
+import { AuthContext } from '../../../../Contexts/AuthProvider';
 
 
 const Register = () => {
+    // context
+    const { UserSignUp, updateUserProfile } = useContext(AuthContext);
+
+
+    // validation objects......
+
+    const [userInfo, setUserInfo] = useState({
+        email: "",
+        password: "",
+        url: "",
+        name: "",
+        // password2: ""
+    })
+    const [error, setError] = useState({
+        emailErr: "",
+        urlErr: "",
+        passwordErr: "",
+        // passwordErr2: "",
+        // mismatch: ""
+    })
+
+
+
+    // handeling functions---------------------------------\
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const name = userInfo.name;
+        const url = userInfo.url;
+        const password = userInfo.password;
+        const email = userInfo.email;
+        console.log(email, password, name, url);
+        // signUp
+        handleUserSignUp(email, password);
+        handleUpdateUser();
+        toast.success("successfully registered", {
+            position: "top-center"
+        })
+
+
+    }
+
+
+    const handleName = (e) => {
+        const fullname = e.target.value;
+        setUserInfo({ ...userInfo, name: fullname })
+    }
+
+
+    const handleUserSignUp = (email, password) => {
+        UserSignUp(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error(error.message, {
+                    position: "top-center"
+                })
+            })
+    }
+
+
+    const handleUpdateUser = () => {
+        const profile = {
+
+            displayName: userInfo.name,
+            photoURL: userInfo.url,
+        }
+
+        updateUserProfile(profile)
+            .then(() => {
+                toast.success("profile updated", {
+                    position: "top-center"
+                })
+            }).catch(error => {
+                console.log(error)
+            })
+    }
+
+
+    //handling  validation functions
+
+    const handleURL = (e) => {
+        const URL = e.target.value;
+        const valid = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(URL);
+
+        if (!valid)
+            setError({ ...error, urlErr: "Please provide a valid url" });
+        else {
+            setError({ ...error, urlErr: "" });
+
+        }
+        setUserInfo({ ...userInfo, url: URL })
+    }
+
+
+    const handleEmail = (e) => {
+
+        const email = e.target.value;
+        const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
+        if (!validEmail) {
+            setError({ ...userInfo, emailErr: "Please provide a valid email address" });
+            setUserInfo({ ...userInfo, email: "" })
+        }
+
+        else {
+            setError({ ...error, emailErr: "" })
+            setUserInfo({ ...userInfo, email: email })
+        }
+        console.log(userInfo.email);
+    }
+
+
+    const handlePass = (e) => {
+        const password = e.target.value;
+        console.log(password);
+        // set the errros  ............
+        const lenError = password.length < 8;
+        const charError = !/(?=[^!@#$&*]*[!@#$&*])/.test(password);
+        const UPPLetterError = !/(?=(?:[^A-Z]*[A-Z]){2})/.test(password);
+        const numericError = !/(?=(?:[^0-9]*[0-9]){2})/.test(password);
+
+
+        if (lenError) {
+
+            setError({ ...error, passwordErr: "password must be 8 characters" })
+            setUserInfo({ ...userInfo, password: "" })
+            setUserInfo({ ...userInfo, password2: "" })
+
+        }
+        else if (charError) {
+            setError({ ...error, passwordErr: "password should have at least have a special character" })
+            setUserInfo({ ...userInfo, password: "" })
+            setUserInfo({ ...userInfo, password2: "" })
+
+        }
+        else if (UPPLetterError) {
+            setError({ ...error, passwordErr: "password should have at least 2 capital letters" })
+            setUserInfo({ ...userInfo, password: "" })
+            setUserInfo({ ...userInfo, password2: "" })
+
+        }
+        else if (numericError) {
+            setError({ ...error, passwordErr: "password should have atleast 2 numbers" })
+            setUserInfo({ ...userInfo, password: "" })
+            setUserInfo({ ...userInfo, password2: "" })
+
+        }
+        else {
+            setError({ ...error, passwordErr: "" });
+            setError({ ...userInfo, password: "" })
+            setError({ ...userInfo, password2: "" })
+
+        }
+        setUserInfo({ ...userInfo, password: password, password2: e.target.value })
+        // console.log(userInfo.password);
+    }
+
     return (
         <div className="relative">
             <img
@@ -19,7 +182,7 @@ const Register = () => {
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     Sign up here
                                 </h3>
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="fullname"
@@ -34,6 +197,7 @@ const Register = () => {
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="fullname"
                                             name="fullname"
+                                            onChange={handleName}
                                         />
                                     </div>
 
@@ -51,8 +215,13 @@ const Register = () => {
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="picture"
                                             name="picture"
+                                            onChange={handleURL}
                                         />
                                     </div>
+                                    {
+                                        error?.urlErr ? <p className="text-red-600 font-semibold my-3">{error.urlErr}</p>
+                                            : <></>
+                                    }
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="email"
@@ -67,8 +236,13 @@ const Register = () => {
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="email"
                                             name="email"
+                                            onChange={handleEmail}
                                         />
                                     </div>
+                                    {
+                                        error?.emailErr ? <p className="text-red-600 font-semibold my-3">{error.emailErr}</p>
+                                            : <></>
+                                    }
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="password"
@@ -83,8 +257,13 @@ const Register = () => {
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="password"
                                             name="password"
+                                            onChange={handlePass}
                                         />
                                     </div>
+                                    {
+                                        error?.passwordErr ? <p className="text-red-600 font-semibold my-3">{error.passwordErr}</p>
+                                            : <></>
+                                    }
                                     <div className="mt-4 mb-2 sm:mb-4">
                                         <button
                                             type="submit"

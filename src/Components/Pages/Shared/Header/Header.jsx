@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
+import { CiLogin } from "react-icons/ci";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../../../../Contexts/AuthProvider";
 
 export default function Navbar() {
+
+    // hooks
     const [isToggleOpen, setIsToggleOpen] = useState(false)
+
+
+    // contexts
+    const { userInfo, user } = useContext(AuthContext);
 
     return (
         <>
@@ -111,6 +118,7 @@ export default function Navbar() {
                                     <span>Blog</span>
                                 </Link>
                             </li>
+
                             <li role="none" className="flex items-stretch place-self: center;">
                                 {/* <!-- Component: Base primary button with animation  --> */}
                                 <Link
@@ -118,9 +126,9 @@ export default function Navbar() {
                                     className="flex items-center gap-2 py-4  lg:px-8"
                                     to="/login"
                                 >
-                                    <button class="inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+                                    <button className="inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
                                         <span>GET STARTED</span>
-                                        <span class="relative only:-mx-5">
+                                        <span className="relative only:-mx-5">
                                             <BsArrowRight />
                                         </span>
                                     </button>
@@ -129,6 +137,11 @@ export default function Navbar() {
                             </li>
 
                         </ul>
+
+                        {
+                            user?.uid ? <></>
+                                : <></>
+                        }
                         <div className="ml-auto flex items-center px-6 lg:ml-0 lg:p-0">
                             {/*        <!-- Avatar --> */}
                             <a
@@ -138,7 +151,7 @@ export default function Navbar() {
                                 <img
                                     src="https://i.pravatar.cc/40?img=35"
                                     alt="user name"
-                                    title="user name"
+                                    title={userInfo?.displayName}
                                     width="40"
                                     height="40"
                                     className="max-w-full rounded-full"
@@ -148,6 +161,7 @@ export default function Navbar() {
                                 </span>
                             </a>
                             {/*        <!-- End Avatar --> */}
+                            <button title="logout" className="text-2xl ml-2"><CiLogin></CiLogin></button>
                         </div>
                     </nav>
                 </div>

@@ -1,10 +1,78 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import LoginPic from "../../../../Assets/Images/loginpic.webp";
+import { AuthContext } from '../../../../Contexts/AuthProvider';
 
 
 
 const Login = () => {
+    // context
+    const { UserSignIn, UserSignOut } = useContext(AuthContext);
+
+    const navigate = useNavigate()
+    // states
+    const [userInfo, setUserInfo] = useState({
+        email: "",
+        password: "",
+
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const password = userInfo.password;
+        const email = userInfo.email;
+        console.log(email, password);
+        // signUp
+        handleUserSignin(email, password)
+        navigate("/courses")
+
+    }
+
+
+    const handleUserSignin = (email, password) => {
+        // console.log("from function", email, password)
+        UserSignIn(email, password)
+            .then(result => {
+                const currentUser = result.user;
+                console.log(currentUser);
+                toast.success("successfully logged in", {
+                    position: "top-center"
+                })
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error(error.message, {
+                    position: "top-center"
+                })
+
+            })
+    }
+    const handelUserLogout = () => {
+        UserSignOut()
+            .then(() => {
+                toast.success("successfully logged out", {
+                    position: "top-center"
+                })
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error(error.message, {
+                    position: "top-center"
+                })
+            })
+    }
+
+
+
+    const handleEmail = (e) => {
+        const email = e.target.value;
+        setUserInfo({ ...userInfo, email: email })
+    }
+    const handlePassword = (e) => {
+        const password = e.target.value;
+        setUserInfo({ ...userInfo, password: password })
+    }
     return (
         <div className="relative">
             <img
@@ -21,7 +89,7 @@ const Login = () => {
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     Sign in here
                                 </h3>
-                                <form>
+                                <form onSubmit={handleSubmit}>
 
                                     <div className="mb-1 sm:mb-2">
                                         <label
@@ -37,6 +105,7 @@ const Login = () => {
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="email"
                                             name="email"
+                                            onChange={handleEmail}
                                         />
                                     </div>
 
@@ -54,6 +123,7 @@ const Login = () => {
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="password"
                                             name="password"
+                                            onChange={handlePassword}
                                         />
                                     </div>
 
