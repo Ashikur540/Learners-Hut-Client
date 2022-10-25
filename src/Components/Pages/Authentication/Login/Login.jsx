@@ -57,6 +57,7 @@ const Login = () => {
         googleSignin(googleProvider).then(result => {
             const user = result.user;
             console.log(user);
+            window.location.reload();
             toast.success("successfully logged in", {
                 position: "top-center"
             })

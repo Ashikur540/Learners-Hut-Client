@@ -33,9 +33,9 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, profile);
     }
 
-    // const googleSignin = (Gglprovider) => {
-    //     return signInWithPopup(auth, Gglprovider);
-    // }
+    const googleSignin = (Gglprovider) => {
+        return signInWithPopup(auth, Gglprovider);
+    }
 
     // const userInfo = {
     //     displayName: "Ashik"
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
         UserSignIn,
         UserSignOut,
         updateUserProfile,
-        // googleSignin,
+        googleSignin,
     }
 
     return (

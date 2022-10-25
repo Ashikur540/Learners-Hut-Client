@@ -64,6 +64,7 @@ const Register = () => {
                     position: "top-center"
                 })
                 handleUpdateUser(name, url);
+                window.location.reload();
 
             })
             .catch(error => {
