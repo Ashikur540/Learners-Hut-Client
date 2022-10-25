@@ -1,10 +1,10 @@
 import { GoogleAuthProvider } from '@firebase/auth';
 import React, { useContext, useState } from 'react';
+import { BsGithub, BsGoogle } from "react-icons/bs";
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import LoginPic from "../../../../Assets/Images/loginpic.webp";
 import { AuthContext } from '../../../../Contexts/AuthProvider';
-
 
 
 const Login = () => {
@@ -147,8 +147,9 @@ const Login = () => {
                                         />
                                     </div>
                                     <div className="mt-4 mb-2 sm:mb-4 flex flex-row justify-evenly items-center">
-                                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111450.png" className="w-8" alt="" onClick={handleGoogleSignin} />
-                                        <img src="https://cdn-icons-png.flaticon.com/512/270/270798.png" className="w-8" alt="" />
+                                        <button className="w-auto" alt="" onClick={handleGoogleSignin} ><BsGoogle className="text-red-500 text-3xl" /></button>
+                                        <button className="w-auto" alt=""  ><BsGithub className="text-accent-500 text-3xl" /></button>
+
                                     </div>
 
                                     <div className="mt-4 mb-2 sm:mb-4">
@@ -194,8 +195,8 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 
