@@ -9,7 +9,7 @@ import { AuthContext } from '../../../../Contexts/AuthProvider';
 
 const Login = () => {
     // context
-    const { UserSignIn, setUser, user, googleSignin } = useContext(AuthContext);
+    const { UserSignIn, setUser, user, googleSignin, resetUserPassword } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     console.log("login:", user);
     const navigate = useNavigate()
@@ -70,6 +70,20 @@ const Login = () => {
             })
     }
 
+    const handleResetPass = (e) => {
+        const email = userInfo.email;
+        resetUserPassword(email)
+            .then(() => {
+                toast.success("we have mail reset link to you mail \n checkout mail", {
+                    position: "top-center"
+                })
+            })
+            .catch(error => {
+                toast.error(error.message, {
+                    position: "top-center"
+                })
+            })
+    }
 
     const handleEmail = (e) => {
         const email = e.target.value;
@@ -146,7 +160,7 @@ const Login = () => {
                                         </button>
                                     </div>
                                     <p className="text-xs text-gray-600 sm:text-sm">
-                                        Cann't remember your password <Link to="/login" className="text-blue-600 font-semibold">Reset</Link> now
+                                        Cann't remember your password <Link to="/login" className="text-blue-600 font-semibold" onClick={handleResetPass}>Reset</Link> now
                                     </p>
                                 </form>
                             </div>
