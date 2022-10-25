@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from '@firebase/auth';
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -8,8 +9,9 @@ import { AuthContext } from '../../../../Contexts/AuthProvider';
 
 const Login = () => {
     // context
-    const { UserSignIn, UserSignOut } = useContext(AuthContext);
-
+    const { UserSignIn, setUser, user, googleSignin } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+    console.log("login:", user);
     const navigate = useNavigate()
     // states
     const [userInfo, setUserInfo] = useState({
@@ -36,6 +38,7 @@ const Login = () => {
             .then(result => {
                 const currentUser = result.user;
                 console.log(currentUser);
+                // setUser(user)
                 toast.success("successfully logged in", {
                     position: "top-center"
                 })
@@ -48,13 +51,16 @@ const Login = () => {
 
             })
     }
-    const handelUserLogout = () => {
-        UserSignOut()
-            .then(() => {
-                toast.success("successfully logged out", {
-                    position: "top-center"
-                })
+
+    const handleGoogleSignin = () => {
+
+        googleSignin(googleProvider).then(result => {
+            const user = result.user;
+            console.log(user);
+            toast.success("successfully logged in", {
+                position: "top-center"
             })
+        })
             .catch(error => {
                 console.error(error);
                 toast.error(error.message, {
@@ -62,7 +68,6 @@ const Login = () => {
                 })
             })
     }
-
 
 
     const handleEmail = (e) => {
@@ -125,6 +130,10 @@ const Login = () => {
                                             name="password"
                                             onChange={handlePassword}
                                         />
+                                    </div>
+                                    <div className="mt-4 mb-2 sm:mb-4 flex flex-row justify-evenly items-center">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111450.png" className="w-8" alt="" onClick={handleGoogleSignin} />
+                                        <img src="https://cdn-icons-png.flaticon.com/512/270/270798.png" className="w-8" alt="" />
                                     </div>
 
                                     <div className="mt-4 mb-2 sm:mb-4">

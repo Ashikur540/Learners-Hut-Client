@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { CiLogin } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../../../Contexts/AuthProvider";
 
 export default function Navbar() {
@@ -11,7 +12,18 @@ export default function Navbar() {
 
 
     // contexts
-    const { userInfo, user } = useContext(AuthContext);
+    const { user, UserSignOut } = useContext(AuthContext);
+
+
+    const handleLogout = () => {
+        UserSignOut()
+            .then(() => {
+                toast.success("logged out")
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
+    }
 
     return (
         <>
@@ -26,8 +38,8 @@ export default function Navbar() {
                     >
                         {/*      <!-- Brand logo --> */}
                         <Link
-                            id="WindUI"
-                            aria-label="WindUI logo"
+                            id="logo"
+                            aria-label="logo"
                             aria-current="page"
                             className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1"
                             to="/"
@@ -53,7 +65,7 @@ export default function Navbar() {
                                     fill="rgba(255,255,255,.2)"
                                 />
                             </svg>
-                            Brand
+                            Learners Hut
                         </Link>
                         {/*      <!-- Mobile trigger --> */}
                         <button
@@ -118,7 +130,6 @@ export default function Navbar() {
                                     <span>Blog</span>
                                 </Link>
                             </li>
-
                             <li role="none" className="flex items-stretch place-self: center;">
                                 {/* <!-- Component: Base primary button with animation  --> */}
                                 <Link
@@ -133,36 +144,44 @@ export default function Navbar() {
                                         </span>
                                     </button>
                                 </Link>
+
                                 {/* <!-- End Base primary button with animation  --> */}
+                            </li>
+                            <li className="ml-auto flex items-center px-6 lg:ml-0 lg:p-0">
+
+
+                                <Link
+                                    title={user?.displayName ? user.displayName : "no user found"}
+                                    className="relative inline-flex h-10 w-10 items-center justify-center rounded-full text-white"
+                                >
+
+                                    {
+                                        user?.uid ? <img
+                                            src={user?.photoURL}
+                                            alt="username"
+                                            width="40"
+                                            height="40"
+                                            className="max-w-full rounded-full"
+                                        />
+                                            :
+                                            <img
+                                                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                alt="user name"
+                                                title={user?.displayName}
+                                                width="40"
+                                                height="40"
+                                                className="max-w-full rounded-full"
+                                            />
+                                    }
+                                </Link>
+                                {/*        <!-- End Avatar --> */}
+                                <button title="logout" className="text-2xl ml-2" onClick={handleLogout}><CiLogin></CiLogin></button>
+
+
                             </li>
 
                         </ul>
 
-                        {
-                            user?.uid ? <></>
-                                : <></>
-                        }
-                        <div className="ml-auto flex items-center px-6 lg:ml-0 lg:p-0">
-                            {/*        <!-- Avatar --> */}
-                            <a
-                                href
-                                className="relative inline-flex h-10 w-10 items-center justify-center rounded-full text-white"
-                            >
-                                <img
-                                    src="https://i.pravatar.cc/40?img=35"
-                                    alt="user name"
-                                    title={userInfo?.displayName}
-                                    width="40"
-                                    height="40"
-                                    className="max-w-full rounded-full"
-                                />
-                                <span className="absolute bottom-0 right-0 inline-flex items-center justify-center gap-1 rounded-full border-2 border-white bg-pink-500 p-1 text-sm text-white">
-                                    <span className="sr-only"> 7 new emails </span>
-                                </span>
-                            </a>
-                            {/*        <!-- End Avatar --> */}
-                            <button title="logout" className="text-2xl ml-2"><CiLogin></CiLogin></button>
-                        </div>
                     </nav>
                 </div>
             </header>

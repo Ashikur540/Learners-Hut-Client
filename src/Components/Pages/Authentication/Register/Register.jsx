@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import registerPic from "../../../../Assets/Images/signuppic.jpg";
 import { AuthContext } from '../../../../Contexts/AuthProvider';
@@ -6,8 +7,8 @@ import { AuthContext } from '../../../../Contexts/AuthProvider';
 
 const Register = () => {
     // context
-    const { UserSignUp, updateUserProfile } = useContext(AuthContext);
-
+    const { UserSignUp, updateUserProfile, setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     // validation objects......
 
@@ -38,10 +39,9 @@ const Register = () => {
         console.log(email, password, name, url);
         // signUp
         handleUserSignUp(email, password);
-        handleUpdateUser();
-        toast.success("successfully registered", {
-            position: "top-center"
-        })
+        navigate("/login")
+
+
 
 
     }
@@ -54,10 +54,16 @@ const Register = () => {
 
 
     const handleUserSignUp = (email, password) => {
+        const name = userInfo.name;
+        const url = userInfo.url;
         UserSignUp(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                toast.success("successfully registered", {
+                    position: "top-center"
+                })
+                handleUpdateUser(name, url);
 
             })
             .catch(error => {
@@ -69,15 +75,17 @@ const Register = () => {
     }
 
 
-    const handleUpdateUser = () => {
+    const handleUpdateUser = (name, photoURL) => {
+
+        console.log("updateFunc", name, photoURL);
         const profile = {
-
-            displayName: userInfo.name,
-            photoURL: userInfo.url,
+            displayName: name,
+            photoURL: photoURL,
         }
-
+        console.log("profile", profile);
         updateUserProfile(profile)
             .then(() => {
+                console.log("inside ", profile);
                 toast.success("profile updated", {
                     position: "top-center"
                 })
@@ -182,7 +190,7 @@ const Register = () => {
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     Sign up here
                                 </h3>
-                                <form onSubmit={handleSubmit}>
+                                <form onSubmit={handleSubmit} >
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="fullname"
@@ -215,6 +223,7 @@ const Register = () => {
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="picture"
                                             name="picture"
+                                            autoComplete="off"
                                             onChange={handleURL}
                                         />
                                     </div>
@@ -264,12 +273,13 @@ const Register = () => {
                                         error?.passwordErr ? <p className="text-red-600 font-semibold my-3">{error.passwordErr}</p>
                                             : <></>
                                     }
+
                                     <div className="mt-4 mb-2 sm:mb-4">
                                         <button
                                             type="submit"
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-mdfocus-visible:outline-none whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
                                         >
-                                            Subscribe
+                                            Register
                                         </button>
                                     </div>
                                     {/* <p className="text-xs text-gray-600 sm:text-sm">
