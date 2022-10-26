@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Login from '../../Components/Pages/Authentication/Login/Login';
 import Register from '../../Components/Pages/Authentication/Register/Register';
 import Blog from '../../Components/Pages/Blog/Blog';
+import CourseDetails from '../../Components/Pages/CourseDetails/CourseDetails';
 import Courses from '../../Components/Pages/Courses/Courses';
 import CoursesRight from '../../Components/Pages/CoursesRight/CoursesRight';
 import Faq from '../../Components/Pages/Faq/Faq';
@@ -40,9 +41,32 @@ const routers = createBrowserRouter([
                 errorElement: <ErrorPage></ErrorPage>,
                 children: [
                     {
+                        path: "/courses",
+                        loader: () => fetch("http://localhost:5000/courses"),
+                        element: <CoursesRight></CoursesRight>,
+                        errorElement: <ErrorPage></ErrorPage>,
+                    },
+                    {
                         path: "/courses/category/:id",
                         loader: ({ params }) => fetch(`http://localhost:5000/courses/category/${params.id}`),
                         element: <CoursesRight></CoursesRight>,
+                        errorElement: <ErrorPage></ErrorPage>
+
+                    },
+                    {
+                        path: "/courses/:id",
+                        loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`),
+                        element: <CourseDetails></CourseDetails>,
+                        errorElement: <ErrorPage></ErrorPage>
+
+                    },
+                    {
+                        path: "/courses/category/:c_id/:id",
+                        loader: ({ params }) => {
+                            const { c_id, id } = (params);
+                            return fetch(`http://localhost:5000/courses/category/${c_id}/${id}`)
+                        },
+                        element: <CourseDetails></CourseDetails>,
                         errorElement: <ErrorPage></ErrorPage>
 
                     },

@@ -12,9 +12,9 @@ const CategoryLeft = () => {
     return (
         <div>
             {/* <h4>All Categories{categories.length}</h4> */}
-            <div className="flex flex-col mt-10 text-left justify-center items-start bg-green-100 rounded-lg">
+            <div className="flex flex-col mt-10 text-left justify-center items-start bg-base-100 rounded-lg">
                 {
-                    categories.map(category => <div className="font-semibold py-3 pl-6 my-1 w-full bg-teal-100" key={category.category_id}>
+                    categories.map(category => <div className="font-semibold py-3 pl-6 my-1 w-full bg-accent rounded-md" key={category.category_id}>
                         <Link to={`/courses/category/${category.category_id}`}>{category.category_name}</Link>
                     </div>)
                 }

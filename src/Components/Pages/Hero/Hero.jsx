@@ -6,7 +6,7 @@ const Hero = () => {
     return (
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <div className="flex flex-col items-center justify-between w-full mb-10 lg:flex-row">
-                <div className="mb-16 lg:mb-0 lg:max-w-lg lg:pr-5">
+                <div className="mb-16 self-start lg:mb-0 lg:mt-6 lg:max-w-lg lg:pr-5">
                     <div className="max-w-xl mb-6">
                         <div>
                             <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider uppercase bg-teal-accent-400 text-teal-900 rounded-full">START TO SUCCESS</p>
