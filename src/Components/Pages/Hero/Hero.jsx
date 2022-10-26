@@ -1,7 +1,6 @@
 import React from 'react';
-import Floater from 'react-floater';
 import HeroImg from "../../../Assets/Images/Hero pic.png";
-
+import "./Hero.css";
 const Hero = () => {
 
     return (
@@ -10,7 +9,7 @@ const Hero = () => {
                 <div className="mb-16 lg:mb-0 lg:max-w-lg lg:pr-5">
                     <div className="max-w-xl mb-6">
                         <div>
-                            <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider uppercase bg-teal-accent-400 text-teal-900 rounded-full">Brand new</p>
+                            <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider uppercase bg-teal-accent-400 text-teal-900 rounded-full">START TO SUCCESS</p>
                         </div>
                         <h2 className="font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none max-w-lg mb-6">
                             Everything you
@@ -30,9 +29,9 @@ const Hero = () => {
                     </div>
                 </div>
                 <div className="flex items-center justify-center lg:w-1/2">
-                    <Floater className="w-100">
-                        <img className="object-cover" src={HeroImg} alt="" />
-                    </Floater>
+                    <div className="w-100 relative">
+                        <img id="hero_img " className="object-cover animated" src={HeroImg} alt="hero-img" />
+                    </div>
 
                 </div>
             </div>

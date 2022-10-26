@@ -6,7 +6,7 @@ const CourseCard = ({ courseData }) => {
     console.log(thumbnail_url, rating);
     return (
         <>
-            <div className="card w-auto bg-base-100 shadow-xl">
+            <div className="card w-auto bg-base-100 shadow-xl my-4">
                 <figure><img src={thumbnail_url} alt="coursepic" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">

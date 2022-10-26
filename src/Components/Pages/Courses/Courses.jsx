@@ -9,12 +9,12 @@ const Courses = () => {
              */}
 
             <section>
-                <div className="container px-6 m-auto">
-                    <div className="grid grid-cols-4 gap-4 md:grid-cols-8 lg:grid-cols-12">
-                        <div className="col-span-4 lg:col-span-2">
+                <div className="container px-3 lg:px-6 m-auto">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-12 lg:grid-cols-12">
+                        <div className="md:col-span-3 lg:col-span-2">
                             <CategoryLeft></CategoryLeft>
                         </div>
-                        <div className="col-span-4 lg:col-span-10 border-2 my-10">
+                        <div className="md:col-span-9 lg:col-span-10  my-10">
                             <Outlet>
 
                             </Outlet>

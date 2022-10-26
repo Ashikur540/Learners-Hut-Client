@@ -11,7 +11,7 @@ const CategoryLeft = () => {
     }, [])
     return (
         <div>
-            <h4>All Categories{categories.length}</h4>
+            {/* <h4>All Categories{categories.length}</h4> */}
             <div className="flex flex-col mt-10 text-left justify-center items-start bg-green-100 rounded-lg">
                 {
                     categories.map(category => <div className="font-semibold py-3 pl-6 my-1 w-full bg-teal-100" key={category.category_id}>
