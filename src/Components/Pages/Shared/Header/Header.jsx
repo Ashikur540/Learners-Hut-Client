@@ -4,6 +4,7 @@ import { CiLogin } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../../Contexts/AuthProvider";
+import Floater from 'react-floater';
 
 export default function Navbar() {
 

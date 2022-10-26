@@ -1,4 +1,5 @@
 import React from 'react';
+import Floater from 'react-floater';
 import HeroImg from "../../../Assets/Images/Hero pic.png";
 
 const Hero = () => {
@@ -29,9 +30,9 @@ const Hero = () => {
                     </div>
                 </div>
                 <div className="flex items-center justify-center lg:w-1/2">
-                    <div className="w-100">
+                    <Floater className="w-100">
                         <img className="object-cover" src={HeroImg} alt="" />
-                    </div>
+                    </Floater>
 
                 </div>
             </div>
