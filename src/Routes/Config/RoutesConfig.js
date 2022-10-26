@@ -9,6 +9,7 @@ import Faq from '../../Components/Pages/Faq/Faq';
 import Hero from '../../Components/Pages/Hero/Hero';
 import Main from '../../Layout/Main';
 import ErrorPage from '../../Others/ErrorPage';
+import CheckOut from '../Private/CheckOut';
 
 
 const routers = createBrowserRouter([
@@ -81,11 +82,19 @@ const routers = createBrowserRouter([
 
             },
             {
+                path: "/courses/:id/checkout",
+                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}/checkout`),
+                element: <CheckOut></CheckOut>,
+                errorElement: <ErrorPage></ErrorPage>
+
+            },
+            {
                 path: "/blog",
                 element: <Blog></Blog>,
                 errorElement: <ErrorPage></ErrorPage>
 
             },
+
 
         ]
     }

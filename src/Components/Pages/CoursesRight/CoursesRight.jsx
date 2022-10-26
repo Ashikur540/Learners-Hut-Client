@@ -4,7 +4,7 @@ import CourseCard from '../CourseCard/CourseCard';
 
 const CoursesRight = () => {
     const category_courses = useLoaderData();
-    console.log(category_courses);
+    // console.log(category_courses);
 
 
     return (

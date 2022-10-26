@@ -1,6 +1,7 @@
 import React from 'react';
 import { BsFillCameraVideoFill, BsStarFill } from "react-icons/bs";
 import { useLoaderData } from 'react-router';
+import { Link } from 'react-router-dom';
 const CourseDetails = () => {
     const courseData = useLoaderData();
     // console.log(courseData);
@@ -9,8 +10,8 @@ const CourseDetails = () => {
         <section>
             <div class="container px-6 m-auto">
                 <h1 className="text-neutral text-2xl font-semibold ml-4">Welcome to {courseData.title}</h1>
-                <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
-                    <div class="block  lg:col-span-8">
+                <div class="block md:grid  gap-6 md:grid-cols-10 lg:grid-cols-12">
+                    <div class="block md:col-span-6  lg:col-span-8">
                         <figure className="my-4 mx-6">
                             <img src={image_url} alt="" className="rounded-lg border-4" />
                             <p className="text-neutral my-2">
@@ -19,7 +20,7 @@ const CourseDetails = () => {
                         </figure>
 
                     </div>
-                    <div class="block mt-10 mb-6 px-3 lg:col-span-4">
+                    <div class="block mt-10 mb-6 px-3 md:col-span-4 lg:col-span-4">
                         <div className="my-4 py-2 px-4">
                             <span className="font-semibold flex items-center"><BsFillCameraVideoFill className="mr-3 text-primary" />Instructor:</span>
                             <p className="text-neutral">
@@ -29,12 +30,12 @@ const CourseDetails = () => {
                             </p>
                         </div>
                         <div className="my-2 py-2 px-4">
-                            <span className="font-semibold flex items-center"><BsStarFill className="mr-3 text-yello-600" />Ratings:</span>
+                            <span className="font-semibold flex items-center"><BsStarFill className="mr-3 text-yellow-500" />Ratings:</span>
                             <p className="text-neutral">
                                 {rating.number}
                                 <div className="badge badge-info ml-2">{rating.badge}</div>
                             </p>
-                            <p className="text-neutra my-3">
+                            <p className="text-neutral my-3">
                                 Full Lifetime Access
                             </p>
                             {/* <!-- Component: Base secondary button with trailing icon  --> */}
@@ -53,9 +54,10 @@ const CourseDetails = () => {
                             {/* <!-- End Base secondary button with trailing icon  --> */}
 
                             {/* <!-- Component: Base secondary elevated button --> */}
-                            <button class="inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-medium tracking-wide transition duration-300 rounded shadow-md focus-visible:outline-none justify-self-center whitespace-nowrap text-primary hover:bg-accent hover:border-1 hover:text-secondary focus:bg-emerald-200 focus:text-emerald-700 focus:text-emerald-700 focus:shadow-md focus:shadow-emerald-100 disabled:cursor-not-allowed disabled:border-emerald-100 disabled:bg-emerald-100 disabled:shadow-none my-4 mx-2">
-                                <span>Premium Access</span>
-                            </button>
+                            <Link to={`/courses/${_id}/checkout`}>
+                                <button class="inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-medium tracking-wide transition duration-300 rounded shadow-md focus-visible:outline-none justify-self-center whitespace-nowrap text-primary hover:bg-accent hover:border-1 hover:text-secondary focus:bg-emerald-200 focus:text-emerald-700 focus:text-emerald-700 focus:shadow-md focus:shadow-emerald-100 disabled:cursor-not-allowed disabled:border-emerald-100 disabled:bg-emerald-100 disabled:shadow-none my-4 mx-2">
+                                    <span>Premium Access</span>
+                                </button></Link>
                             {/* <!-- End Base secondary elevated button --> */}
                         </div>
                     </div>
