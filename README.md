@@ -10,7 +10,7 @@ In the project directory, you can run:
 
 <ul>
 <li>User Login & registration </li>
-<li>Security and proper authentication </li>
+<li>Security and proper authentication and private routing  </li>
 <li>Serve different Course category</li>
 <li>Dark and white mode theme</li>
 <li>see details of a course</li>
