@@ -6,6 +6,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { app } from '../Firebase/Firebase.init';
 
 
+
 // careate context
 export const AuthContext = createContext(app);
 
@@ -20,24 +21,30 @@ const AuthProvider = ({ children }) => {
     // functions..................................
 
     const UserSignUp = (email, password) => {
+        setLoader(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const UserSignIn = (email, password) => {
+        setLoader(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     const UserSignOut = () => {
+        setLoader(true);
         return signOut(auth);
     }
     const updateUserProfile = (profile) => {
+        setLoader(true);
         return updateProfile(auth.currentUser, profile);
     }
 
     const googleSignin = (Gglprovider) => {
+        setLoader(true);
         return signInWithPopup(auth, Gglprovider);
     }
 
     const resetUserPassword = (email) => {
+        setLoader(true);
         return sendPasswordResetEmail(auth, email);
     }
 
@@ -50,6 +57,7 @@ const AuthProvider = ({ children }) => {
         const unmount = onAuthStateChanged(auth, currentUser => {
             console.log("state changed", currentUser);
             setUser(currentUser);
+            setLoader(false);
         })
 
         return () => {
@@ -60,6 +68,8 @@ const AuthProvider = ({ children }) => {
         user,
         // userInfo,
         setUser,
+        loader,
+        setLoader,
         UserSignUp,
         UserSignIn,
         UserSignOut,
