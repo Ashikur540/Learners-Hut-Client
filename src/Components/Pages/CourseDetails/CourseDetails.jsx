@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const CourseDetails = () => {
     const courseData = useLoaderData();
     // console.log(courseData);
-    const { description, instructor, image_url, title, total_inrolled, rating, price, _id } = (courseData);
+    const { description, instructor, image_url, title, total_inrolled, rating, price, _id, learn } = (courseData);
     return (
         <section>
             <div class="container px-6 m-auto">
@@ -18,7 +18,14 @@ const CourseDetails = () => {
                                 {description}
                             </p>
                         </figure>
-
+                        <div className="flex justify-star flex-col">
+                            <h2 className="text-neutral my-4 font-semibold">Curriculum</h2>
+                            {
+                                learn.map(list => <div className="py-2 my-2 md:ml-4 lg:ml-8">
+                                    ✅ {list.slice(2, -1)}
+                                </div>)
+                            }
+                        </div>
                     </div>
                     <div class="block mt-10 mb-6 px-3 md:col-span-4 lg:col-span-4">
                         <div className="my-4 py-2 px-4">
@@ -34,6 +41,10 @@ const CourseDetails = () => {
                             <p className="text-neutral">
                                 {rating.number}
                                 <div className="badge badge-info ml-2">{rating.badge}</div>
+                            </p>
+                            <p className="text-neutral my-2 py-2">
+                                💸 {price} $
+
                             </p>
                             <p className="text-neutral my-3">
                                 Full Lifetime Access
