@@ -5,7 +5,7 @@ const CategoryLeft = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/courses/category")
+        fetch("https://learnears-hut-server.vercel.app/courses/category")
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])

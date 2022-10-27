@@ -1,12 +1,22 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The project Name: [Learners Hut](https://learners-hut.web.app/).
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `✨Features`
+
+<ul>
+<li>User Login & registration </li>
+<li>Security and proper authentication </li>
+<li>Serve different Course category</li>
+<li>Dark and white mode theme</li>
+<li>see details of a course</li>
+<li>Download course curriculum</li>
+<li>User comforting UI</li>
+</ul>
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

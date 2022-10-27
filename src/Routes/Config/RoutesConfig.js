@@ -45,20 +45,20 @@ const routers = createBrowserRouter([
                 children: [
                     {
                         path: "/courses",
-                        loader: () => fetch("http://localhost:5000/courses"),
+                        loader: () => fetch("https://learnears-hut-server.vercel.app/courses"),
                         element: <CoursesRight></CoursesRight>,
                         errorElement: <ErrorPage></ErrorPage>,
                     },
                     {
                         path: "/courses/category/:id",
-                        loader: ({ params }) => fetch(`http://localhost:5000/courses/category/${params.id}`),
+                        loader: ({ params }) => fetch(`https://learnears-hut-server.vercel.app/courses/category/${params.id}`),
                         element: <CoursesRight></CoursesRight>,
                         errorElement: <ErrorPage></ErrorPage>
 
                     },
                     {
                         path: "/courses/:id",
-                        loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`),
+                        loader: ({ params }) => fetch(`https://learnears-hut-server.vercel.app/courses/${params.id}`),
                         element: <CourseDetails></CourseDetails>,
                         errorElement: <ErrorPage></ErrorPage>
 
@@ -67,7 +67,7 @@ const routers = createBrowserRouter([
                         path: "/courses/category/:c_id/:id",
                         loader: ({ params }) => {
                             const { c_id, id } = (params);
-                            return fetch(`http://localhost:5000/courses/category/${c_id}/${id}`)
+                            return fetch(`https://learnears-hut-server.vercel.app/courses/category/${c_id}/${id}`)
                         },
                         element: <CourseDetails></CourseDetails>,
                         errorElement: <ErrorPage></ErrorPage>
@@ -85,7 +85,7 @@ const routers = createBrowserRouter([
             },
             {
                 path: "/courses/:id/checkout",
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}/checkout`),
+                loader: ({ params }) => fetch(`https://learnears-hut-server.vercel.app/courses/${params.id}/checkout`),
                 element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
                 errorElement: <ErrorPage></ErrorPage>
 
