@@ -9,15 +9,15 @@ const Hero = () => {
                 <div className="mb-16 self-start lg:mb-0 lg:mt-6 lg:max-w-lg lg:pr-5">
                     <div className="max-w-xl mb-6">
                         <div>
-                            <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider uppercase bg-teal-accent-400 text-teal-900 rounded-full">START TO SUCCESS</p>
+                            <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider uppercase bg-teal-accent-400 text-secondary rounded-full">START TO SUCCESS</p>
                         </div>
-                        <h2 className="font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none max-w-lg mb-6">
+                        <h2 className="font-sans text-3xl font-bold tracking-tight text-neutral sm:text-4xl sm:leading-none max-w-lg mb-6">
                             Everything you
                             <br className="hidden md:block" />
                             can imagine{' '}
                             <span className="inline-block text-deep-purple-accent-400">is possible</span>
                         </h2>
-                        <p className="text-gray-700 text-base md:text-lg">Learners hut is a online learning platform where you will find varity
+                        <p className="text-neutral text-neutral-80 md:text-lg">Learners hut is a online learning platform where you will find varity
                             of courses from greate instructurs accros the web.You can communicate with you instructor and clearify you doubts.
                             So, accelerate Your carrer with job ready skills.  </p>
                     </div>

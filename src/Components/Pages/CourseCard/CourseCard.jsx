@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaDollarSign, FaStar } from "react-icons/fa";
 import { HiUsers } from "react-icons/hi";
 import { Link } from 'react-router-dom';
 const CourseCard = ({ courseData }) => {
@@ -21,9 +22,9 @@ const CourseCard = ({ courseData }) => {
                         : description
                     }</p>
                     <div className="card-actions justify-end">
-                        <div className="badge badge-outline">{rating.number}</div>
+                        <div className="badge badge-outline"><FaStar className="text-yellow-600 mr-1" />{rating.number}</div>
 
-                        <div className="badge badge-outline font-semibold">{price} $</div>
+                        <div className="badge badge-outline font-semibold"><FaDollarSign />{price}</div>
                     </div>
                     <div className="card-actions justify-center mt-3">
                         <Link to={`${_id}`} > <button className="btn btn-wide btn-primary text-base-100">Buy Now</button></Link>

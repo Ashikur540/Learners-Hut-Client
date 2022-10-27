@@ -29,7 +29,7 @@ export default function Navbar() {
         <>
             {/*<!-- Component: Navbar with Avatar --> */}
             {/*<!-- Header --> */}
-            <header className="border-b-1 relative z-20 w-full border-b border-slate-200 bg-white/90 shadow-lg shadow-slate-700/5 after:absolute after:top-full after:left-0 after:z-10 after:block after:h-px after:w-full after:bg-slate-200 lg:border-slate-200 lg:backdrop-blur-sm lg:after:hidden">
+            <header className="border-b-1 relative z-20 w-full border-b border-slate-200 bg-base-100 shadow-lg shadow-slate-700/5 after:absolute after:top-full after:left-0 after:z-10 after:block after:h-px after:w-full after:bg-slate-200 lg:border-slate-200 lg:backdrop-blur-sm lg:after:hidden">
                 <div className="relative mx-auto max-w-full px-6 lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[96rem]">
                     <nav
                         aria-label="main navigation"
@@ -41,7 +41,7 @@ export default function Navbar() {
                             id="logo"
                             aria-label="logo"
                             aria-current="page"
-                            className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1"
+                            className="flex items-center gap-2 whitespace-nowrap py-3 text-lg text-neutral focus:outline-none lg:flex-1"
                             to="/"
                         >
                             <svg
@@ -69,7 +69,7 @@ export default function Navbar() {
                         </Link>
                         {/*      <!-- Mobile trigger --> */}
                         <button
-                            className={`relative order-10 block h-10 w-10 self-center lg:hidden
+                            className={`relative order-10 block h-10 w-10 self-center lg:hidden 
               ${isToggleOpen
                                     ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45 "
                                     : ""
@@ -82,15 +82,15 @@ export default function Navbar() {
                             <div className="absolute top-1/2 left-1/2 w-6 -translate-x-1/2 -translate-y-1/2 transform">
                                 <span
                                     aria-hidden="true"
-                                    className="absolute block h-0.5 w-9/12 -translate-y-2 transform rounded-full bg-slate-900 transition-all duration-300"
+                                    className="absolute block h-0.5 w-9/12 -translate-y-2  transform bg-primary rounded-full bg-slate-900 transition-all duration-300"
                                 ></span>
                                 <span
                                     aria-hidden="true"
-                                    className="absolute block h-0.5 w-6 transform rounded-full bg-slate-900 transition duration-300"
+                                    className="absolute block h-0.5 w-6 transform   rounded-full bg-slate-900 transition duration-300"
                                 ></span>
                                 <span
                                     aria-hidden="true"
-                                    className="absolute block h-0.5 w-1/2 origin-top-left translate-y-2 transform rounded-full bg-slate-900 transition-all duration-300"
+                                    className="absolute block h-0.5 w-1/2 origin-top-left translate-y-2 transform  rounded-full bg-slate-900 transition-all duration-300"
                                 ></span>
                             </div>
                         </button>
@@ -106,7 +106,7 @@ export default function Navbar() {
                             <li role="none" className="flex items-stretch">
                                 <Link
                                     aria-label="courses"
-                                    className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
+                                    className="flex text-neutral items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
                                     to="/courses"
                                 >
                                     <span>Courses</span>
@@ -115,7 +115,7 @@ export default function Navbar() {
                             <li role="none" className="flex items-stretch">
                                 <Link
                                     aria-label="faq"
-                                    className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
+                                    className="flex text-neutral items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
                                     to="/faq"
                                 >
                                     <span>FAQ</span>
@@ -124,7 +124,7 @@ export default function Navbar() {
                             <li role="none" className="flex items-stretch">
                                 <Link
                                     aria-label="blog"
-                                    className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
+                                    className="flex text-neutral items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
                                     to="/blog"
                                 >
                                     <span>Blog</span>

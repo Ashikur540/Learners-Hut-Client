@@ -18,16 +18,14 @@ module.exports = {
           "accent": "#FFFAF5",
 
           "neutral": "#251825",
+          "neutral-80": "#393939",
 
           "base-100": "#F6F7F7",
 
           "info": "#86B0F3",
 
-          "success": "#29BC9A",
 
-          "warning": "#BD6405",
 
-          "error": "#e11d48",
 
         },
       },
@@ -40,17 +38,14 @@ module.exports = {
 
           "accent": "#FFFAF5",
 
-          "neutral": "#251825",
+          "neutral": "#ffff",
 
-          "base-100": "#F6F7F7",
+          "neutral-80": "#EEF0F1",
+
+          "base-100": "#0D0A21",
 
           "info": "#86B0F3",
 
-          "success": "#29BC9A",
-
-          "warning": "#BD6405",
-
-          "error": "#e11d48",
         },
       },
     ],
