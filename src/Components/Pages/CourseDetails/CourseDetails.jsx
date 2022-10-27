@@ -1,11 +1,27 @@
+import { jsPDF } from "jspdf";
 import React from 'react';
 import { BsFillCameraVideoFill, BsStarFill } from "react-icons/bs";
 import { useLoaderData } from 'react-router';
 import { Link } from 'react-router-dom';
+
+
+
 const CourseDetails = () => {
     const courseData = useLoaderData();
     // console.log(courseData);
     const { description, instructor, image_url, title, total_inrolled, rating, price, _id, learn } = (courseData);
+
+
+
+    const createPdf = () => {
+        const doc = new jsPDF('landscape', "px", "a4", "false");
+
+        doc.text(title, 20, 20);
+        doc.addImage(image_url, 'JPEG', 25, 50, 180, 160)
+        doc.text(learn, 20, 250);
+        doc.save("curriculum.pdf");
+    }
+
     return (
         <section>
             <div class="container px-6 m-auto">
@@ -40,8 +56,8 @@ const CourseDetails = () => {
                             <span className="font-semibold flex items-center"><BsStarFill className="mr-3 text-yellow-500" />Ratings:</span>
                             <p className="text-neutral">
                                 {rating.number}
-                                <div className="badge badge-info ml-2">{rating.badge}</div>
                             </p>
+                            <div className="badge badge-info ml-2">{rating.badge}</div>
                             <p className="text-neutral my-2 py-2">
                                 💸 {price} $
 
@@ -50,7 +66,9 @@ const CourseDetails = () => {
                                 Full Lifetime Access
                             </p>
                             {/* <!-- Component: Base secondary button with trailing icon  --> */}
-                            <button class="inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-medium tracking-wide transition duration-300 rounded focus-visible:outline-none justify-self-center whitespace-nowrap bg-primary text-accent hover:bg-accent hover:border-1 hover:text-secondary focus:bg-emerald-200 focus:text-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none">
+                            <button class="inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-medium tracking-wide transition duration-300 rounded focus-visible:outline-none justify-self-center whitespace-nowrap bg-primary text-accent hover:bg-accent hover:border-1 hover:text-secondary focus:bg-emerald-200 focus:text-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none"
+                                onClick={createPdf}
+                            >
                                 <span>Curriculum</span>
                                 <span class="relative only:-mx-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" role="graphics-symbol" aria-labelledby="title-22 desc-22">
@@ -58,7 +76,7 @@ const CourseDetails = () => {
                                         <desc id="desc-22">
                                             A more detailed description of the icon
                                         </desc>
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                                     </svg>
                                 </span>
                             </button>
