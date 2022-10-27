@@ -17,7 +17,9 @@ const Hero = () => {
                             can imagine{' '}
                             <span className="inline-block text-deep-purple-accent-400">is possible</span>
                         </h2>
-                        <p className="text-gray-700 text-base md:text-lg">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. explicabo.</p>
+                        <p className="text-gray-700 text-base md:text-lg">Learners hut is a online learning platform where you will find varity
+                            of courses from greate instructurs accros the web.You can communicate with you instructor and clearify you doubts.
+                            So, accelerate Your carrer with job ready skills.  </p>
                     </div>
                     <div className="flex items-center space-x-3">
                         <a href className="w-32 transition duration-300 hover:shadow-lg">
