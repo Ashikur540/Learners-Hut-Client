@@ -158,7 +158,7 @@ const Login = () => {
                                     </div>
                                     <div className="mt-4 mb-2 sm:mb-4 flex flex-row justify-evenly items-center">
                                         <button className="w-auto" alt="" onClick={handleGoogleSignin} ><BsGoogle className="text-red-500 text-3xl" /></button>
-                                        <button className="w-auto" alt=""  ><BsGithub className="text-accent-500 text-3xl" /></button>
+                                        <button className="w-auto" alt="" onClick={() => { toast.info("Currently not availale.\n We are working on it") }}  ><BsGithub className="text-accent-100 text-3xl" /></button>
 
                                     </div>
 
