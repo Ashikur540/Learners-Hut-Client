@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { BsStarFill } from "react-icons/bs";
+import { FaMoneyBillWave } from "react-icons/fa";
 import { useLoaderData } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Contexts/AuthProvider";
-
 const CheckOut = () => {
     const { user } = useContext(AuthContext);
     const courseInfo = useLoaderData();
@@ -24,11 +24,11 @@ const CheckOut = () => {
                         <img src={thumbnail_url} alt="" className="rounded-lg border-4 " />
                     </figure>
                     <div className="flex flex-col justify-start mr-3">
-                        <span className="font-semibold flex items-center"><BsStarFill className="mr-3 text-yellow-600" />{rating.number}</span>
-                        <span className="font-semibold flex items-center"><BsStarFill className="mr-3 text-yellow-600" />Price:</span>
-                        <p className="text-neutral">
+                        <span className="font-semibold flex items-center"><BsStarFill className="mr-3 text-yellow-400" />{rating.number}</span>
+                        <span className="font-semibold flex items-center"><FaMoneyBillWave className="mr-3 text-green-500" />Price:<p className="text-neutral">
                             {price} $
-                        </p>
+                        </p></span>
+
                     </div>
 
                 </div>

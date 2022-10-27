@@ -6,9 +6,10 @@ import Navbar from '../Components/Pages/Shared/Header/Header';
 const Main = () => {
     return (
         <div>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+            <Navbar>
+                <Outlet></Outlet>
+                <Footer></Footer>
+            </Navbar>
         </div>
     );
 };
