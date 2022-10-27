@@ -1,18 +1,26 @@
 import { GoogleAuthProvider } from '@firebase/auth';
 import React, { useContext, useState } from 'react';
 import { BsGithub, BsGoogle } from "react-icons/bs";
+import { useLocation } from 'react-router';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import LoginPic from "../../../../Assets/Images/loginpic.webp";
 import { AuthContext } from '../../../../Contexts/AuthProvider';
 
-
 const Login = () => {
     // context
     const { UserSignIn, setUser, user, googleSignin, resetUserPassword } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
-    console.log("login:", user);
-    const navigate = useNavigate()
+
+    const location = useLocation();
+    console.log("from login-", location);
+    const from = location.state?.from?.pathname || "/"
+    // console.log("login:", user);
+    const navigate = useNavigate();
+
+
+
+
     // states
     const [userInfo, setUserInfo] = useState({
         email: "",
@@ -25,9 +33,9 @@ const Login = () => {
         const password = userInfo.password;
         const email = userInfo.email;
         console.log(email, password);
-        // signUp
+        // signin
         handleUserSignin(email, password)
-        navigate("/courses")
+
 
     }
 
@@ -42,6 +50,7 @@ const Login = () => {
                 toast.success("successfully logged in", {
                     position: "top-center"
                 })
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.error(error);
@@ -57,10 +66,11 @@ const Login = () => {
         googleSignin(googleProvider).then(result => {
             const user = result.user;
             console.log(user);
-            window.location.reload();
+            // window.location.reload();
             toast.success("successfully logged in", {
                 position: "top-center"
             })
+            navigate(from, { replace: true })
         })
             .catch(error => {
                 console.error(error);

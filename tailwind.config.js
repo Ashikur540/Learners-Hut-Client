@@ -28,6 +28,7 @@ module.exports = {
           "warning": "#BD6405",
 
           "error": "#e11d48",
+
         },
       },
       {

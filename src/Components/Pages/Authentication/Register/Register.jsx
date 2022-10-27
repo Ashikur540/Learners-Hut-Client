@@ -39,7 +39,7 @@ const Register = () => {
         console.log(email, password, name, url);
         // signUp
         handleUserSignUp(email, password);
-        navigate("/login")
+        navigate("/")
 
 
 

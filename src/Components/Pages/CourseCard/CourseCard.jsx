@@ -14,7 +14,7 @@ const CourseCard = ({ courseData }) => {
                         {title}
                     </h2>
                     <div className="flex flex-row justify-start">
-                        <div className="badge badge-secondary mb-2 ">{rating.badge}</div>
+                        <div className="badge badge-info mb-2 ">{rating.badge}</div>
                         <div className="badge badge ml-auto " title="Total inrolled "><HiUsers className="mr-3" />{total_inrolled}</div>
                     </div>
                     <p>{description?.length >= 100 ? description.slice(0, 150)
